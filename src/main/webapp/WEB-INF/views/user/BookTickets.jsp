@@ -5,7 +5,7 @@
 <head>
 
 <meta charset="utf-8">
-<title>Đặt vé</title>
+<title>Đặt vé xe</title>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/user/css/booktickets.css">
@@ -16,9 +16,14 @@
 	href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link rel="stylesheet" type="text/css"
 	href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
 </head>
 <body>
+	<div id="toast"></div>
 
 	<header class="header-container">
 		<img
@@ -58,262 +63,319 @@
 	</div>
 
 	<nav>
-		<ul>
-			<li><a href="#" class="border-choice">TRANG CHỦ</a></li>
-			<li><a href="#">LỊCH TRÌNH</a></li>
-			<li><a href="#">TRA CỨU VÉ</a></li>
-			<li><a href="#">TIN TỨC</a></li>
-			<li><a href="#">HOÁ ĐƠN</a></li>
-			<li><a href="#">LIÊN HỆ</a></li>
-			<li><a href="#">VỀ CHÚNG TÔI</a></li>
-		</ul>
-	</nav>
-
-	<img
-		src="<%=request.getContextPath()%>/assets/user/image/home_background.png"
-		alt="FUTA Bus Lines" class="centered-image">
-
-	<section class="search-section">
-		<h2>Tìm chuyến xe</h2>
-
-		<div class="booking-options">
-			<div class="trip-options">
-				<label class="option"> <span> <input type="radio"
-						class="ant-radio-input" name="trip-type" checked="" value="false">
-						<span class="ant-radio-inner"></span>
-				</span> <span>Một chiều</span>
-				</label> <label class="option"> <span> <input type="radio"
-						class="ant-radio-input" name="trip-type" value="true"> <span
-						class="ant-radio-inner"> </span>
-				</span> <span>Khứ hồi</span>
-				</label>
-			</div>
-			<span class="guide-link"> <a target="_blank" rel="noreferrer"
-				href="/huong-dan-dat-ve-tren-web">Hướng dẫn mua vé</a>
-			</span>
+		<div class="flex h-10 cursor-pointer items-center px-6">Quay lại</div>
+		<div class="content">
+			<p>TP.Hồ Chí Minh - Đà Lạt</p>
+			<p>Thứ 3, 14/01</p>
 		</div>
-
-		<form class="booking-form">
-			<div class="form-group">
-				<label for="departure">Điểm đi</label> <input id="departure"
-					name="departure" class="form-control" placeholder="Chọn điểm đi"
-					autocomplete="off">
-				<ul id="dropdown-list-departure" class="dropdown-list">
-				</ul>
-			</div>
-
-			<div class="form-group">
-				<label for="destination">Điểm đến</label> <input id="destination"
-					name="destination" class="form-control" placeholder="Chọn điểm đến"
-					autocomplete="off">
-				<ul id="dropdown-list-destination" class="dropdown-list">
-				</ul>
-			</div>
-
-			<div class="form-group">
-				<label for="myID">Ngày đi</label> <input id="myID"
-					class="form-control" value="2025-01-09">
-			</div>
-
-			<!-- <div class="form-group">
-				<label for="return-date">Ngày về</label> <input id="return-date"
-					type="text" name="return-date" class="form-control"
-					placeholder="Thêm ngày về" disabled>
-			</div> -->
-
-			<div class="form-group">
-				<label for="tickets">Số vé</label> <input id="tickets"
-					name="tickets" class="form-control" placeholder="1"
-					autocomplete="off" value="1" readonly>
-				<ul id="dropdown-list-tickets" class="dropdown-list">
-					<li data-value="1">1</li>
-					<li data-value="2">2</li>
-					<li data-value="3">3</li>
-					<li data-value="4">4</li>
-					<li data-value="5">5</li>
-				</ul>
-				<span class="dropdown-icon">&#9662;</span>
-			</div>
-
-			<button type="submit" class="search-button">Tìm chuyến xe</button>
-		</form>
-
-	</section>
+	</nav>
 
 	<div class="filter-container">
 		<div class="filter-section">
 			<div class="filter-header">
-				<h5>BỘ LỌC TÌM KIẾM</h5>
+				<h5>Chọn ghế</h5>
 				<div class="filter-actions">
-					<button class="reset-filter">Bỏ lọc</button>
-					<img
-						src="<%=request.getContextPath()%>/assets/user/image/delete.svg"
-						width="22" height="22" alt="delete">
-				</div>
-			</div>
-			
-			<div class="filter-group">
-				<label>Giờ đi</label>
-				<div class="filter-options">
-					<label><input type="checkbox"> Sáng sớm 00:00 -
-						06:00 (0)</label> <label><input type="checkbox"> Buổi sáng
-						06:00 - 12:00 (0)</label> <label><input type="checkbox">
-						Buổi chiều 12:00 - 18:00 (0)</label> <label><input type="checkbox">
-						Buổi tối 18:00 - 24:00 (31)</label>
-				</div>
-			</div>
-			<div class="divide"></div>
-			<div class="filter-group">
-				<label>Loại xe</label>
-				<div class="filter-options">
-					<button class="btn-filter">Ghế</button>
-					<button class="btn-filter">Giường</button>
-					<button class="btn-filter">Limousine</button>
-				</div>
-			</div>
-			<div class="divide"></div>
-			<div class="filter-group">
-				<label>Hàng ghế</label>
-				<div class="filter-options">
-					<button class="btn-filter">Hàng đầu</button>
-					<button class="btn-filter">Hàng giữa</button>
-					<button class="btn-filter">Hàng cuối</button>
-				</div>
-			</div>
-			<div class="divide"></div>
-			<div class="filter-group">
-				<label>Tầng</label>
-				<div class="filter-options">
-					<button class="btn-filter">Tầng trên</button>
-					<button class="btn-filter">Tầng dưới</button>
-				</div>
-			</div>
-		</div>
-		
-		<div class="result-section">
-			<div class="search-location-section">
-				<h3>TP. Hồ Chí Minh - Lâm Đồng (31)</h3>
-				<div class="result-filters">
-					<button class="btn-result-filter"><img
-						src="<%=request.getContextPath()%>/assets/user/image/save_money.svg" alt="save_money">Giá rẻ bất ngờ</button>
-					<button class="btn-result-filter"><img
-						src="<%=request.getContextPath()%>/assets/user/image/clock.svg" alt="clock">Giờ khởi hành</button>
-					<button class="btn-result-filter"><img
-						src="<%=request.getContextPath()%>/assets/user/image/seat.svg" alt="seat">Ghế trống</button>
+					<button class="reset-filter">Thông tin xe</button>
 				</div>
 			</div>
 
-			<div class="trip-list">
-				<div class="trip-item">
-					<div class="trip-details">
-						<div class="trip-info">
-							<div class="time-info">
-								<p class="duration">01:50</p>
-								<img src="<%=request.getContextPath()%>/assets/user/image/pickup.svg" width="22" height="22" alt="pickup">
-								<span class="flex-1 border-b-2 border-dotted"></span>
-								<p><span class="time">8 giờ</span> <span class="timezone">(Asian/Ho Chi Minh)</span></p>
-								<span class="flex-1 border-b-2 border-dotted"></span>
-								<img src="<%=request.getContextPath()%>/assets/user/image/station.svg" width="22" height="22" alt="station">
-								<p class="duration">05:50</p>
-							</div>
-							
-							<div class="location-info">
-								<p>Bến Xe Miền Tây</p>
-								<p>Bến Xe Đà Lạt</p>
-							</div>
-						</div>
-						
-						<div class="trip-summary">
-							<span class="kind">Limousine</span> 
-							<span class="blank">19 chỗ trống</span> 
-							<span class="price">290.000đ</span>
-						</div>
+			<div class="seating-list">
+				<div class="filter-group">
+					<label>Tầng dưới</label>
+					<div class="filter-options">
+						<table>
+							<tbody>
+								<tr class="flex items-center gap-1 justify-between">
+									<td class="relative"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">A01</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td style="position: relative;"></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">A02</span></td>
+								</tr>
+
+								<tr class="flex items-center gap-1 justify-between">
+									<td class="relative"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">A03</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">A04</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">A05</span></td>
+								</tr>
+
+								<tr class="flex items-center gap-1 justify-between">
+									<td class="relative"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">A06</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">A07</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">A08</span></td>
+								</tr>
+								<tr class="flex items-center gap-1 justify-between">
+									<td class="relative"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">A09</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">A10</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">A11</span></td>
+								</tr>
+								<tr class="flex items-center gap-1 justify-between">
+									<td class="relative"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">A12</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">A13</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">A14</span></td>
+								</tr>
+								<tr class="flex items-center gap-1 justify-between">
+									<td class="relative"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">A15</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">A16</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">A17</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="filter-group">
+					<label>Tầng trên</label>
+					<div class="filter-options">
+						<table>
+							<tbody>
+								<tr class="flex items-center gap-1 justify-between">
+									<td class="relative seat_disabled"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">B01</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td style="position: relative;"></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative seat_disabled"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">B02</span></td>
+								</tr>
+
+								<tr class="flex items-center gap-1 justify-between">
+									<td class="relative seat_disabled"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">B03</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative seat_disabled"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">B04</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative seat_disabled"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">B05</span></td>
+								</tr>
+
+								<tr class="flex items-center gap-1 justify-between">
+									<td class="relative seat_disabled"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">B06</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative seat_disabled"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">B07</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative seat_disabled"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+										alt="seat icon"><span class="absolute">B08</span></td>
+								</tr>
+								<tr class="flex items-center gap-1 justify-between">
+									<td class="relative seat_active"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_active.svg"
+										alt="seat icon" onclick="selectSeat(this)"><span
+										class="absolute seat-label">B09</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative seat_active"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_active.svg"
+										alt="seat icon" onclick="selectSeat(this)"><span
+										class="absolute seat-label">B10</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative seat_active"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_active.svg"
+										alt="seat icon" onclick="selectSeat(this)"><span
+										class="absolute seat-label">B11</span></td>
+								</tr>
+								<tr class="flex items-center gap-1 justify-between">
+									<td class="relative seat_active"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_active.svg"
+										alt="seat icon" onclick="selectSeat(this)"><span
+										class="absolute seat-label">B12</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative seat_active"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_active.svg"
+										alt="seat icon" onclick="selectSeat(this)"><span
+										class="absolute seat-label">B13</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative seat_active"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_active.svg"
+										alt="seat icon" onclick="selectSeat(this)"><span
+										class="absolute seat-label">B14</span></td>
+								</tr>
+								<tr class="flex items-center gap-1 justify-between">
+									<td class="relative seat_active"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_active.svg"
+										alt="seat icon" onclick="selectSeat(this)"><span
+										class="absolute seat-label">B15</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative seat_active"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_active.svg"
+										alt="seat icon" onclick="selectSeat(this)"><span
+										class="absolute seat-label">B16</span></td>
+									<td style="position: relative; width: 24px;"></td>
+									<td class="relative seat_active"><img width="32"
+										src="<%=request.getContextPath()%>/assets/user/image/seat_active.svg"
+										alt="seat icon" onclick="selectSeat(this)"><span
+										class="absolute seat-label">B17</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="filter-group">
+					<div class="filter-options">
+						<span class="sold"><img
+							src="<%=request.getContextPath()%>/assets/user/image/seat_disabled.svg"
+							width="22" height="22" alt="seat_disabled">Đã bán</span> <span
+							class="vacant"><img
+							src="<%=request.getContextPath()%>/assets/user/image/seat_active.svg"
+							width="22" height="22" alt="seat_active">Còn trống</span> <span
+							class="selecting"><img
+							src="<%=request.getContextPath()%>/assets/user/image/seat_selecting.svg"
+							width="22" height="22" alt="seat_selecting">Đang chọn</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="divide"></div>
+
+			<div class="customer-info">
+				<h2>Thông tin khách hàng</h2>
+				<form class="customer-form">
+					<div class="form-group">
+						<label for="name">Họ và tên <span class="required">*</span></label>
+						<input type="text" id="name" name="name"
+							placeholder="Nhập họ và tên">
+					</div>
+					<div class="form-group">
+						<label for="phone">Số điện thoại <span class="required">*</span></label>
+						<input type="text" id="phone" name="phone"
+							placeholder="Nhập số điện thoại">
+					</div>
+					<div class="form-group">
+						<label for="email">Email <span class="required">*</span></label> <input
+							type="email" id="email" name="email" placeholder="Nhập email">
+					</div>
+					<div class="terms">
+						<input type="checkbox" id="accept-terms" name="accept-terms">
+						<label for="accept-terms"> Chấp nhận điều khoản đặt vé &
+							chính sách bảo mật thông tin của FUTA Bus Lines </label>
+					</div>
+				</form>
+				<div class="notes">
+					<h3>ĐIỀU KHOẢN & LƯU Ý</h3>
+					<p>
+						(*) Quý khách vui lòng có mặt tại bến xuất phát của xe trước ít
+						nhất 30 phút giờ xe khởi hành, mang theo thông báo đã thanh toán
+						vé thành công có chứa mã vé được gửi từ hệ thống FUTA BUS LINES.
+						Vui lòng liên hệ Trung tâm tổng đài <strong>1900 6067</strong> để
+						được hỗ trợ.
+					</p>
+					<p>
+						(*) Nếu quý khách có nhu cầu trung chuyển, vui lòng liên hệ Tổng
+						đài trung chuyển <strong>1900 6918</strong> trước khi đặt vé.
+						Chúng tôi không đón/trung chuyển tại những điểm xe trung chuyển
+						không thể tới được.
+					</p>
+				</div>
+			</div>
+
+			<div class="divide"></div>
+
+			<div class="button-action">
+				<button class="btn-cancel">Huỷ</button>
+				<button class="btn-select" id="submit-button">Thanh toán</button>
+			</div>
+		</div>
+
+		<div class="result-section">
+			<div class="infor">
+				<div class="departure-information">
+					<p class="item">Thông tin lượt đi</p>
+					<div class="trip-information">
+						<span class="title">Tuyến xe</span><span
+							class="road">Mien Dong moi - Di Linh</span>
+					</div>
+					<div class="trip-information">
+						<span class="title">Thời gian xuất bến</span><span
+							class="time">17:00 16/01/2025</span>
+					</div>
+					<div class="trip-information">
+						<span class="title">Số lượng ghế</span><span
+							class="number">1 Ghế</span>
+					</div>
+					<div class="trip-information">
+						<span class="title">Số ghế</span><span
+							class="seat">B08, B08, B08, B08, B08</span>
+					</div>
+					<div class="trip-information">
+						<span class="title">Tổng tiền lượt đi</span><span
+							class="price">240.000đ</span>
+					</div>
+				</div>
+
+				<div class="price-information">
+					<p class="item">Chi tiết giá</p>
+					<div class="price-infor">
+						<span class="title">Giá vé lượt đi</span><span
+							class="ticket-price">240.000đ</span>
+					</div>
+					<div class="price-infor">
+						<span class="title">Phí thanh toán</span><span
+							class="fee">0đ</span>
 					</div>
 					
 					<div class="divide"></div>
 					
-					<div class="trip-action">
-						<span>Chọn ghế</span>
-						<span>Lịch trình</span>
-						<span>Trung chuyển</span>
-						<span>Chính sách</span>
-						<button class="btn-select">Chọn chuyến</button>
+					<div class="price-infor">
+						<span class="title">Tổng tiền</span><span
+							class="total">240.000đ</span>
 					</div>
 				</div>
-				
-				<div class="trip-item">
-					<div class="trip-details">
-						<div class="trip-info">
-							<div class="time-info">
-								<p class="duration">01:50</p>
-								<img src="<%=request.getContextPath()%>/assets/user/image/pickup.svg" width="22" height="22" alt="pickup">
-								<span class="flex-1 border-b-2 border-dotted"></span>
-								<p><span class="time">8 giờ</span> <span class="timezone">(Asian/Ho Chi Minh)</span></p>
-								<span class="flex-1 border-b-2 border-dotted"></span>
-								<img src="<%=request.getContextPath()%>/assets/user/image/station.svg" width="22" height="22" alt="station">
-								<p class="duration">05:50</p>
-							</div>
-							
-							<div class="location-info">
-								<p>Bến Xe Miền Tây</p>
-								<p>Bến Xe Đà Lạt</p>
-							</div>
-						</div>
-						
-						<div class="trip-summary">
-							<span class="kind">Limousine</span> 
-							<span class="blank">19 chỗ trống</span> 
-							<span class="price">290.000đ</span>
-						</div>
-					</div>
-					
-					<div class="divide"></div>
-					
-					<div class="trip-action">
-						<span>Chọn ghế</span>
-						<span>Lịch trình</span>
-						<span>Trung chuyển</span>
-						<span>Chính sách</span>
-						<button class="btn-select">Chọn chuyến</button>
-					</div>
-				</div>
-				
-				<div class="trip-item">
-					<div class="trip-details">
-						<div class="trip-info">
-							<div class="time-info">
-								<p class="duration">01:50</p>
-								<img src="<%=request.getContextPath()%>/assets/user/image/pickup.svg" width="22" height="22" alt="pickup">
-								<span class="flex-1 border-b-2 border-dotted"></span>
-								<p><span class="time">8 giờ</span> <span class="timezone">(Asian/Ho Chi Minh)</span></p>
-								<span class="flex-1 border-b-2 border-dotted"></span>
-								<img src="<%=request.getContextPath()%>/assets/user/image/station.svg" width="22" height="22" alt="station">
-								<p class="duration">05:50</p>
-							</div>
-							
-							<div class="location-info">
-								<p>Bến Xe Miền Tây</p>
-								<p>Bến Xe Đà Lạt</p>
-							</div>
-						</div>
-						
-						<div class="trip-summary">
-							<span class="kind">Limousine</span> 
-							<span class="blank">19 chỗ trống</span> 
-							<span class="price">290.000đ</span>
-						</div>
-					</div>
-					
-					<div class="divide"></div>
-					
-					<div class="trip-action">
-						<span>Chọn ghế</span>
-						<span>Lịch trình</span>
-						<span>Trung chuyển</span>
-						<span>Chính sách</span>
-						<button class="btn-select">Chọn chuyến</button>
-					</div>
-				</div>
+
 			</div>
 		</div>
 	</div>
@@ -378,96 +440,174 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 	<script>
-    	flatpickr("#myID", {
-    		dateFormat: "d/m/Y",
-    	});
-    </script>
+		flatpickr("#myID", {
+			dateFormat : "d/m/Y",
+		});
+	</script>
 
 	<script>
-    
-    document.addEventListener("DOMContentLoaded", function () {
-        const departureInput = document.getElementById("departure");
-        const destinationInput = document.getElementById("destination");
-        const dropdownDeparture = document.getElementById("dropdown-list-departure");
-        const dropdownDestination = document.getElementById("dropdown-list-destination");
+	
+	let selectedSeatsCount = 0;
+	const maxSeats = 5;
+	
+	function selectSeat(imageElement) {
+	    const parentElement = imageElement.parentElement;
 
-        const cities = [
-            "Hải Dương", "Hải Phòng", "Hòa Bình", "Hậu Giang", "Hưng Yên",
-            "Lâm Đồng", "TP. Hồ Chí Minh", "Hà Nội", "Đà Nẵng", "Cần Thơ"
-        ];
+	    const spanElement = parentElement.querySelector('.seat-label');
 
-        const showDropdown = (input, dropdown, filter = "") => {
-            dropdown.innerHTML = ""; 
-            const filteredCities = cities.filter(city => city.toLowerCase().includes(filter.toLowerCase()));
+	    const seatActiveSrc = "<%=request.getContextPath()%>/assets/user/image/seat_active.svg";
+	    const seatSelectingSrc = "<%=request.getContextPath()%>/assets/user/image/seat_selecting.svg";
 
-            if (filteredCities.length > 0) {
-                filteredCities.forEach(city => {
-                    const li = document.createElement("li");
-                    li.textContent = city;
-                    li.addEventListener("click", () => {
-                        input.value = city; 
-                        dropdown.style.display = "none"; 
-                    });
-                    dropdown.appendChild(li);
-                });
-                dropdown.style.display = "block";
-            } else {
-                dropdown.style.display = "none";
-            }
-        };
+	    if (imageElement.src.includes("seat_active.svg")) {
+	    	if (selectedSeatsCount >= maxSeats) {
+	    		toast({
+	                title: "Chú ý!",
+	                message: "Đã chọn đủ số ghế.",
+	                type: "error",
+	                duration: 1000
+	            });
+	            return;
+	        }
+	        imageElement.src = seatSelectingSrc;
+	        spanElement.style.color = "#ef5222"; 
+	        selectedSeatsCount++;
+	        console.log("selectedSeatsCount: ",selectedSeatsCount);
+	    } else if (imageElement.src.includes("seat_selecting.svg")) {
+	        imageElement.src = seatActiveSrc; 
+	        spanElement.style.color = ""; 
+	        selectedSeatsCount--;
+	    }
+	}
+	
+	function toast({ title = "", message = "", type = "info", duration = 3000 }) {
+		const main = document.getElementById("toast");
+		if (main) {
+			const toast = document.createElement("div");
+			
+    	    const autoRemoveId = setTimeout(function () {
+    	      main.removeChild(toast);
+    	    }, duration + 1000);
 
-        departureInput.addEventListener("focus", () => {
-            showDropdown(departureInput, dropdownDeparture);
-        });
+    	    toast.onclick = function (e) {
+    	      if (e.target.closest(".toast__close")) {
+    	        main.removeChild(toast);
+    	        clearTimeout(autoRemoveId);
+    	      }
+    	    };
 
-        destinationInput.addEventListener("focus", () => {
-            showDropdown(destinationInput, dropdownDestination);
-        });
+    	    const icons = {
+    	      success: "fas fa-check-circle",
+    	      info: "fas fa-info-circle",
+    	      warning: "fas fa-exclamation-circle",
+    	      error: "fas fa-exclamation-circle"
+    	    };
+    	    const icon = icons[type];
+    	    console.log("icon:",icon);
+    	    const delay = (duration / 1000).toFixed(2);
 
-        departureInput.addEventListener("input", () => {
-            const query = departureInput.value;
-            showDropdown(departureInput, dropdownDeparture, query);
-        });
+    	    toast.classList.add("toast", `toast--${type}`);
+    	    toast.style.animation = `slideInLeft ease .3s, fadeOut linear 1s ${delay}s forwards`;
 
-        destinationInput.addEventListener("input", () => {
-            const query = destinationInput.value;
-            showDropdown(destinationInput, dropdownDestination, query);
-        });
-
-        document.addEventListener("click", (event) => {
-            if (!departureInput.contains(event.target) && !dropdownDeparture.contains(event.target)) {
-                dropdownDeparture.style.display = "none";
-            }
-            if (!destinationInput.contains(event.target) && !dropdownDestination.contains(event.target)) {
-                dropdownDestination.style.display = "none";
-            }
-        });
+    	    toast.innerHTML = `
+    	                    <div class="toast__icon">
+    	                        <i class="${icon}"></i>
+    	                    </div>
+    	                    <div class="toast__body">
+    	                        <h3 class="toast__title">${title}</h3>
+    	                        <p class="toast__msg">${message}</p>
+    	                    </div>
+    	                    <div class="toast__close">
+    	                        <i class="fas fa-times"></i>
+    	                    </div>
+    	                `;
+    	    const toastIcon = toast.querySelector('.toast__icon');
+			if (toastIcon) {
+    			const iconElement = document.createElement('i');
+    			iconElement.className = icon;
+    			toastIcon.appendChild(iconElement);
+			}
+    	    const toastMessage = toast.querySelector('.toast__msg');
+    	    toastMessage.textContent = message; 
+    	    const toastTitle = toast.querySelector('.toast__title');
+    	    toastTitle.textContent = title; 
+    	    main.appendChild(toast);
+		}
+    }
+	
+	document.getElementById('submit-button').addEventListener('click', function(event) {
+        const nameInput = document.getElementById('name');
+        const nameValue = nameInput.value.trim();
         
-        const input = document.getElementById("tickets");
-        const dropdown = document.getElementById("dropdown-list-tickets");
+        const phoneInput = document.getElementById('phone');
+        const phoneValue = phoneInput.value.trim();
+        
+        const emailInput = document.getElementById('email');
+        const emailValue = emailInput.value.trim();
+        
+        const termsCheckbox = document.getElementById("accept-terms");
+        let isFormValid = true;
+        
+        const regex = /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ\s]+$/u;
+        const phoneRegex = /^[0-9]{10}$/;
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+        
+        if (nameValue === '' || phoneValue === '' || emailValue === '') {
+        	isFormValid = false;
+            event.preventDefault();
 
-        // Hiển thị danh sách khi nhấp vào ô input
-        input.addEventListener("click", function () {
-            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-        });
-
-        // Cập nhật giá trị khi chọn một mục trong danh sách
-        dropdown.addEventListener("click", function (e) {
-            if (e.target.tagName === "LI") {
-                input.value = e.target.getAttribute("data-value");
-                dropdown.style.display = "none";
-            }
-        });
-
-        // Ẩn danh sách khi nhấp ra ngoài
-        document.addEventListener("click", function (e) {
-            if (!dropdown.contains(e.target) && e.target !== input) {
-                dropdown.style.display = "none";
-            }
-        });
+            toast({
+                title: "Chú ý!",
+                message: "Vui lòng điền đầy đủ thông tin.",
+                type: "error",
+                duration: 1000
+            });
+        } 
+        
+        if (!regex.test(nameValue) && nameValue !== '') {
+        	isFormValid = false;
+            event.preventDefault();
+            toast({
+                title: "Lỗi!",
+                message: "Họ và tên không được chứa số hoặc ký tự đặc biệt.",
+                type: "error",
+                duration: 1000
+            });
+        }
+        
+        if (!phoneRegex.test(phoneValue) && phoneValue !== '') {
+        	isFormValid = false;
+            event.preventDefault(); 
+            toast({
+                title: "Chú ý!",
+                message: "Số điện thoại chứa 10 chữ số và chỉ bao gồm các số.",
+                type: "error",
+                duration: 1000
+            });
+        }
+        
+        if (!emailRegex.test(emailValue) && emailValue !== '') {
+        	isFormValid = false;
+            event.preventDefault();
+            toast({
+                title: "Lỗi!",
+                message: "Email phải có đuôi @gmail.com.",
+                type: "error",
+                duration: 1000
+            });
+        }
+        
+        if (isFormValid && !termsCheckbox.checked) {
+            event.preventDefault();
+            toast({
+                title: "Chú ý!",
+                message: "Bạn cần chấp nhận điều khoản để thanh toán.",
+                type: "error",
+                duration: 1000
+            });
+        }
     });
 
-    </script>
+	</script>
 
 </body>
 </html>
