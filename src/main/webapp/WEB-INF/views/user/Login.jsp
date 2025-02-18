@@ -65,20 +65,34 @@
                     <button class="active" onclick="showLoginForm()">ĐĂNG NHẬP</button>
                     <button onclick="showRegisterForm()">ĐĂNG KÝ</button>
                 </div>
-                
-                <form>
-                    <div class="input-group">
-                    	<img src="<%=request.getContextPath()%>/assets/user/image/phone.svg" alt="Phone Icon" class="phone-icon">
-                        <input type="text" placeholder="Nhập số điện thoại">
-                    </div>
-                    <div class="input-group">
-                    	<img src="<%=request.getContextPath()%>/assets/user/image/password.svg" alt="password" class="password-icon">
-                        <input type="password" placeholder="Nhập mật khẩu" id="password">
-                        <img src="<%=request.getContextPath()%>/assets/user/image/hide.png" alt="eye" class="eye-icon" onclick="togglePassword()">
-                    </div>
-                    <button type="submit" class="btn" id="submit-button">Đăng nhập</button>
-                    <a href="#" class="forgot-password">Quên mật khẩu</a>
-                </form>
+
+        <form id="login-form">
+            <div class="input-group">
+                <img src="<%=request.getContextPath()%>/assets/user/image/phone.svg" alt="Phone Icon" class="phone-icon">
+                <input type="text" placeholder="Nhập số điện thoại">
+            </div>
+            <div class="input-group">
+                <img src="<%=request.getContextPath()%>/assets/user/image/password.svg" alt="password" class="password-icon">
+                <input type="password" placeholder="Nhập mật khẩu" id="password">
+                <img src="<%=request.getContextPath()%>/assets/user/image/hide.png" alt="eye" class="eye-icon" onclick="togglePassword()">
+            </div>
+            <button type="submit" class="btn" id="login-button">Đăng nhập</button>
+            <a href="#" class="forgot-password">Quên mật khẩu</a>
+        </form>
+
+        <form id="register-form" style="display: none;">
+            <div class="input-group">
+                <img src="<%=request.getContextPath()%>/assets/user/image/phone.svg" alt="Phone Icon" class="phone-icon">
+                <input type="text" placeholder="Nhập số điện thoại">
+            </div>
+            <div class="input-group">
+                <img src="<%=request.getContextPath()%>/assets/user/image/password.svg" alt="password" class="password-icon">
+                <input type="password" placeholder="Nhập mật khẩu">
+                <img src="<%=request.getContextPath()%>/assets/user/image/hide.png" alt="eye" class="eye-icon" onclick="togglePassword()">
+            </div>
+            <button type="submit" class="btn" id="register-button">Đăng ký</button>
+            <a href="#" class="forgot-password">Quên mật khẩu</a>
+        </form>
             </div>
         </div>
     </div>
@@ -165,30 +179,30 @@
 	
 	function showLoginForm() {
 	    document.getElementById('form-title').innerText = 'Đăng nhập tài khoản';
+	    document.getElementById('login-form').style.display = 'block'; 
+	    document.getElementById('register-form').style.display = 'none'; 
+	    document.getElementById('login-button').style.display = 'inline-block';
+	    document.getElementById('register-button').style.display = 'none';
+	    
+	    const loginButton = document.querySelector('.tabs button:first-child');
+	    const registerButton = document.querySelector('.tabs button:last-child');
 
-	    // Hiện nút đăng nhập và ẩn nút đăng ký
-	    document.getElementById('submit-button').innerText = 'Đăng nhập';
-	    document.getElementById('submit-button').style.display = 'inline-block'; // Hiện nút Đăng nhập
-
-	    // Hiển thị các trường đăng nhập
-	    var inputGroups = document.querySelectorAll('.input-group');
-	    inputGroups.forEach(function(inputGroup) {
-	        inputGroup.style.display = 'block';
-	    });
+	    loginButton.classList.add('active');
+	    registerButton.classList.remove('active');
 	}
 
 	function showRegisterForm() {
 	    document.getElementById('form-title').innerText = 'Đăng ký tài khoản';
-
-	    // Ẩn nút đăng nhập và hiển thị nút đăng ký
-	    document.getElementById('submit-button').innerText = 'Đăng ký';
-	    document.getElementById('submit-button').style.display = 'inline-block'; // Hiện nút Đăng ký
-
-	    // Ẩn các trường đăng nhập
-	    var inputGroups = document.querySelectorAll('.input-group');
-	    inputGroups.forEach(function(inputGroup) {
-	        inputGroup.style.display = 'block'; // Bạn có thể thay đổi kiểu hiển thị nếu muốn trường đăng ký khác với trường đăng nhập
-	    });
+	    document.getElementById('register-form').style.display = 'block'; 
+	    document.getElementById('login-form').style.display = 'none'; 
+	    document.getElementById('register-button').style.display = 'inline-block';
+	    document.getElementById('login-button').style.display = 'none'; 
+	    
+	    const loginButton = document.querySelector('.tabs button:first-child');
+	    const registerButton = document.querySelector('.tabs button:last-child');
+	    
+	    registerButton.classList.add('active');
+	    loginButton.classList.remove('active');
 	}
 	</script>
 
