@@ -30,25 +30,20 @@
 				src="<%=request.getContextPath()%>/assets/admin/image/user.png"
 				alt="user" class="active" /><span>Người Dùng</span><img
 				src="<%=request.getContextPath()%>/assets/admin/image/down-arrow.png"
-				alt="down" class="arrow active" /></a> 
+				alt="down" class="arrow active" /></a>
 			<div class="submenu" id="dashboardSubmenu">
-    			<a href="#">Nhân Viên</a>
-    			<a href="#">Khách hàng</a>
-    			<a href="#">Phân Quyền</a>
-  			</div>
+				<a href="#">Khách hàng</a> <a href="#">Nhân Viên</a> <a href="#">Phân
+					Quyền</a>
+			</div>
 			<a href="#"><img
 				src="<%=request.getContextPath()%>/assets/admin/image/route.png"
-				alt="route" /><span>Quản Lý Tuyến Xe</span></a> 
-			<a href="#"><img
+				alt="route" /><span>Quản Lý Tuyến Xe</span></a> <a href="#"><img
 				src="<%=request.getContextPath()%>/assets/admin/image/map.png"
-				alt="map" /><span>Quản Lý Chuyến Xe</span></a> 
-			<a href="#"><img
+				alt="map" /><span>Quản Lý Chuyến Xe</span></a> <a href="#"><img
 				src="<%=request.getContextPath()%>/assets/admin/image/bus-bus.png"
-				alt="bus" /><span>Quản Lý Xe</span></a> 
-			<a href="#"><img
+				alt="bus" /><span>Quản Lý Xe</span></a> <a href="#"><img
 				src="<%=request.getContextPath()%>/assets/admin/image/bill.png"
-				alt="bill" /><span>Quản Lý Hoá Đơn</span></a> 
-			<a href="#"><img
+				alt="bill" /><span>Quản Lý Hoá Đơn</span></a> <a href="#"><img
 				src="<%=request.getContextPath()%>/assets/admin/image/chart.png"
 				alt="chart" /><span>Thống Kê</span></a>
 		</nav>
@@ -68,26 +63,31 @@
 				<div class="header__user" onclick="toggleModal()">
 					<img
 						src="<%=request.getContextPath()%>/assets/admin/image/users.png"
-						alt="User" /> 
-					<span>Xin chào <strong>Emirhan Boruch</strong></span>
-					<img
-				src="<%=request.getContextPath()%>/assets/admin/image/down-arrow.png"
-				alt="down" />
+						alt="User" /> <span>Xin chào <strong>Emirhan
+							Boruch</strong></span> <img
+						src="<%=request.getContextPath()%>/assets/admin/image/down-arrow.png"
+						alt="down" />
 				</div>
-				
+
 				<div class="user-modal" id="userModal">
-        			<div class="user-modal__content">
-            			<p><strong>Emirhan Boruch</strong></p>
-            			<p>emirhanboruch51@gmail.com</p>
-            			<div class="user-modal__item"><img
-							src="<%=request.getContextPath()%>/assets/admin/image/profile.png"
-							alt="profile" /> Chỉnh sửa hồ sơ</div>
-            			<hr>
-            			<div class="user-modal__item logout"><img
-							src="<%=request.getContextPath()%>/assets/admin/image/log-out.png"
-							alt="log-out" class="log-out"/> Đăng xuất</div>
-        			</div>
-    			</div>
+					<div class="user-modal__content">
+						<p>
+							<strong>Emirhan Boruch</strong>
+						</p>
+						<p>emirhanboruch51@gmail.com</p>
+						<div class="user-modal__item">
+							<img
+								src="<%=request.getContextPath()%>/assets/admin/image/profile.png"
+								alt="profile" /> Chỉnh sửa hồ sơ
+						</div>
+						<hr>
+						<div class="user-modal__item logout">
+							<img
+								src="<%=request.getContextPath()%>/assets/admin/image/log-out.png"
+								alt="log-out" class="log-out" /> Đăng xuất
+						</div>
+					</div>
+				</div>
 			</div>
 		</header>
 
@@ -95,21 +95,20 @@
 			<div class="cards">
 				<div class="card">
 					<div class="card__text">
-            			<div class="card__title">Khách hàng</div>
-            			<div class="card__value">3,782</div>
-        			</div>
+						<div class="card__title">Khách hàng</div>
+						<div class="card__value">3,782</div>
+					</div>
 					<img
-				src="<%=request.getContextPath()%>/assets/admin/image/customer.png"
-				alt="customer" />
+						src="<%=request.getContextPath()%>/assets/admin/image/customer.png"
+						alt="customer" />
 				</div>
 				<div class="card">
 					<div class="card__text">
 						<div class="card__title">Tổng số xe</div>
 						<div class="card__value">59</div>
 					</div>
-					<img
-				src="<%=request.getContextPath()%>/assets/admin/image/bus.png"
-				alt="bus" />
+					<img src="<%=request.getContextPath()%>/assets/admin/image/bus.png"
+						alt="bus" />
 				</div>
 				<div class="card">
 					<div class="card__text">
@@ -117,8 +116,8 @@
 						<div class="card__value">187</div>
 					</div>
 					<img
-				src="<%=request.getContextPath()%>/assets/admin/image/bus-route.png"
-				alt="bus-route" />
+						src="<%=request.getContextPath()%>/assets/admin/image/bus-route.png"
+						alt="bus-route" />
 				</div>
 				<div class="card">
 					<div class="card__text">
@@ -126,8 +125,8 @@
 						<div class="card__value">102.000.259</div>
 					</div>
 					<img
-				src="<%=request.getContextPath()%>/assets/admin/image/money.png"
-				alt="money" />
+						src="<%=request.getContextPath()%>/assets/admin/image/money.png"
+						alt="money" />
 				</div>
 			</div>
 
@@ -137,121 +136,77 @@
 					<div class="orders__actions">
 						<div class="search-box">
 							<input type="text" placeholder="Nhập từ khoá để tìm kiếm..." />
-							<div class="search-box__icon"><img
-								src="<%=request.getContextPath()%>/assets/admin/image/magnifying-glass.png"
-								alt="search" /></div>
+							<div class="search-box__icon">
+								<img
+									src="<%=request.getContextPath()%>/assets/admin/image/magnifying-glass.png"
+									alt="search" />
+							</div>
 						</div>
 					</div>
 				</div>
-				
+
 				<table>
 					<thead>
 						<tr>
-							<th>Products</th>
-							<th>Category</th>
-							<th>Price</th>
-							<th>Status</th>
+							<th>Họ tên</th>
+							<th>Tuổi</th>
+							<th>Giới tính</th>
+							<th>Địa chỉ</th>
+							<th>Số điện thoại</th>
+							<th>Email</th>
 							<th>Hành động</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Macbook Pro 13"</td>
-							<td>Laptop</td>
-							<td>$2399.00</td>
-							<td class="status delivered">Delivered</td>
-							<td>
-								<img
-								src="<%=request.getContextPath()%>/assets/admin/image/see.png"
-								alt="detail" />
-								<img
-								src="<%=request.getContextPath()%>/assets/admin/image/update.png"
-								alt="search" />
-								<img
-								src="<%=request.getContextPath()%>/assets/admin/image/delete.png"
-								alt="search" />
-							</td>
-						</tr>
-						<tr>
-							<td>Apple Watch Ultra</td>
-							<td>Watch</td>
-							<td>$799.00</td>
-							<td class="status delivered">Delivered</td>
-							<td>
-								<img
-								src="<%=request.getContextPath()%>/assets/admin/image/see.png"
-								alt="detail" />
-								<img
-								src="<%=request.getContextPath()%>/assets/admin/image/update.png"
-								alt="search" />
-								<img
-								src="<%=request.getContextPath()%>/assets/admin/image/delete.png"
-								alt="search" />
-							</td>
-						</tr>
-						<tr>
-							<td>iPhone 13 Pro Max</td>
-							<td>SmartPhone</td>
-							<td>$1899.00</td>
-							<td class="status pending">Pending</td>
-							<td>
-								<img
-								src="<%=request.getContextPath()%>/assets/admin/image/see.png"
-								alt="detail" />
-								<img
-								src="<%=request.getContextPath()%>/assets/admin/image/update.png"
-								alt="search" />
-								<img
-								src="<%=request.getContextPath()%>/assets/admin/image/delete.png"
-								alt="search" />
-							</td>
-						</tr>
-						<tr>
-							<td>iPhone 13 Pro Max</td>
-							<td>SmartPhone</td>
-							<td>$1899.00</td>
-							<td class="status pending">Pending</td>
-							<td>
-								<img
-								src="<%=request.getContextPath()%>/assets/admin/image/see.png"
-								alt="detail" />
-								<img
-								src="<%=request.getContextPath()%>/assets/admin/image/update.png"
-								alt="search" />
-								<img
-								src="<%=request.getContextPath()%>/assets/admin/image/delete.png"
-								alt="search" />
-							</td>
-						</tr>
-						<tr>
-							<td>iPhone 13 Pro Max</td>
-							<td>SmartPhone</td>
-							<td>$1899.00</td>
-							<td class="status pending">Pending</td>
-							<td>
-								<img
-								src="<%=request.getContextPath()%>/assets/admin/image/see.png"
-								alt="detail" />
-								<img
-								src="<%=request.getContextPath()%>/assets/admin/image/update.png"
-								alt="search" />
-								<img
-								src="<%=request.getContextPath()%>/assets/admin/image/delete.png"
-								alt="search" />
-							</td>
-						</tr>
-						<tr>
+						<c:forEach var="nguoiDung" items="${nguoiDungList}">
+							<tr>
+								<td>${nguoiDung.hoTen}</td>
+								<td>${nguoiDung.namSinh}</td>
+								<td>${nguoiDung.gioiTinh ? 'Nữ' : 'Nam'}</td>
+								<td>${nguoiDung.diaChi}</td>
+								<td>${nguoiDung.soDienThoai}</td>
+								<td>${nguoiDung.email}</td>
+								<td><img
+									src="<%=request.getContextPath()%>/assets/admin/image/see.png"
+									alt="detail" /> <img
+									src="<%=request.getContextPath()%>/assets/admin/image/update.png"
+									alt="update" /> <img
+									src="<%=request.getContextPath()%>/assets/admin/image/delete.png"
+									alt="delete" /></td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
-				
+
+				<div class="custom-hr"></div>
+
 				<div class="pagination-container">
-    				<p class="pagination-info">Showing 1 - 5 of 10 Products</p>
-    				<div class="pagination">
-        				<span class="prev disabled">Prev</span>
-        				<span class="page active">1</span>
-        				<span class="page">2</span>
-        				<span class="next">Next</span>
-    				</div>
+					<p class="pagination-info">Hiển thị trang ${currentPage} trong
+						${totalPages} trang</p>
+					<div class="pagination">
+						<c:choose>
+							<c:when test="${currentPage <= 1}">
+								<span class="prev disabled">Trước</span>
+							</c:when>
+							<c:otherwise>
+								<a href="?page=${currentPage - 1}" class="prev">Trước</a>
+							</c:otherwise>
+						</c:choose>
+
+						<c:forEach var="i" begin="1" end="${totalPages}">
+							<a href="?page=${i}"
+								class="page ${i == currentPage ? 'active' : ''}">${i}</a>
+						</c:forEach>
+
+						<c:choose>
+							<c:when test="${currentPage >= totalPages}">
+								<span class="next disabled">Sau</span>
+							</c:when>
+							<c:otherwise>
+								<a href="?page=${currentPage + 1}" class="next">Sau</a>
+							</c:otherwise>
+						</c:choose>
+					</div>
 				</div>
 			</div>
 		</main>
@@ -265,44 +220,56 @@
 		    const logoImg = logoDiv.querySelector('img');
 		    const dashboardParent = document.getElementById('dashboardParent');
 		    const dashboardSubmenu = document.getElementById('dashboardSubmenu');
+		    
+		    if (localStorage.getItem('sidebarCollapsed') === 'true') {
+		        sidebar.classList.add('collapsed');
+		        logoImg.setAttribute('src', '<%=request.getContextPath()%>/assets/admin/image/image-logo.png');
+		    }
 
 		    toggleBtn.addEventListener('click', function() {
 		        sidebar.classList.toggle('collapsed');
 		        
 		        if (sidebar.classList.contains('collapsed')) {
 		          logoImg.setAttribute('src', '<%=request.getContextPath()%>/assets/admin/image/image-logo.png');
+		          localStorage.setItem('sidebarCollapsed', 'true');
 		        } else {
 		          logoImg.setAttribute('src', '<%=request.getContextPath()%>/assets/admin/image/logo.png');
-		        }
-		        
-		        if (dashboardSubmenu.classList.contains('open')) {
-		            dashboardSubmenu.classList.remove('open');
-		            dashboardParent.classList.remove('open');
-		          }
-		      });
+		          localStorage.setItem('sidebarCollapsed', 'false');
+												}
 
-		    dashboardParent.addEventListener('click', function(e) {
-		      e.preventDefault(); 
+												if (dashboardSubmenu.classList
+														.contains('open')) {
+													dashboardSubmenu.classList
+															.remove('open');
+													dashboardParent.classList
+															.remove('open');
+												}
+											});
 
-		      if (!sidebar.classList.contains('collapsed')) {
-		    	    dashboardSubmenu.classList.toggle('open');
-		    	    dashboardParent.classList.toggle('open');
-		    	  }
-		    });
-		});
-		
+							dashboardParent.addEventListener('click', function(
+									e) {
+								e.preventDefault();
+
+								if (!sidebar.classList.contains('collapsed')) {
+									dashboardSubmenu.classList.toggle('open');
+									dashboardParent.classList.toggle('open');
+								}
+							});
+						});
+
 		function toggleModal() {
-		    var modal = document.getElementById("userModal");
-		    modal.classList.toggle("show");
+			var modal = document.getElementById("userModal");
+			modal.classList.toggle("show");
 		}
-		
+
 		document.addEventListener("click", function(event) {
-		    var modal = document.getElementById("userModal");
-		    var userHeader = document.querySelector(".header__user");
-		    
-		    if (!userHeader.contains(event.target) && !modal.contains(event.target)) {
-		        modal.classList.remove("show");
-		    }
+			var modal = document.getElementById("userModal");
+			var userHeader = document.querySelector(".header__user");
+
+			if (!userHeader.contains(event.target)
+					&& !modal.contains(event.target)) {
+				modal.classList.remove("show");
+			}
 		});
 	</script>
 

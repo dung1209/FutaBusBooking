@@ -260,6 +260,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   color: #667085;
+  table-layout: fixed;
 }
 
 thead {
@@ -269,6 +270,7 @@ thead {
 th, td {
   text-align: left;
   padding: 1rem 0.6rem;
+  text-align: center;
 }
 
 tr:not(:last-child) {
@@ -439,6 +441,7 @@ table tbody tr:hover {
 
 .pagination-info {
     font-size: 14px;
+    color: #979595;
 }
 
 .pagination {
@@ -482,4 +485,17 @@ th:last-child, td:last-child {
     text-align: center;
 }
 
+.custom-hr {
+	width: 100%;
+	height: 0.5px;
+	border-bottom: 1px solid #eee;
+}
 
+.pagination a {
+    text-decoration: none;
+}
+
+.pagination .next.disabled {
+    color: #ccc;
+    cursor: default;
+}
