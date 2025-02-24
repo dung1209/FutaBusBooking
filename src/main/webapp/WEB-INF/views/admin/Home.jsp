@@ -27,32 +27,30 @@
 
 		<nav class="sidebar__nav">
 			<a href="#" class="active menu-parent" id="dashboardParent"><img
-				src="<%=request.getContextPath()%>/assets/admin/image/dashboard.png"
-				alt="dashboard" class="active" /><span>Dashboard</span><img
+				src="<%=request.getContextPath()%>/assets/admin/image/user.png"
+				alt="user" class="active" /><span>Người Dùng</span><img
 				src="<%=request.getContextPath()%>/assets/admin/image/down-arrow.png"
 				alt="down" class="arrow active" /></a> 
 			<div class="submenu" id="dashboardSubmenu">
-    			<a href="#">eCommerce</a>
-    			<a href="#">Analytics</a>
-    			<a href="#">Marketing</a>
-    			<a href="#">CRM</a>
-    			<a href="#">Stocks</a>
+    			<a href="#">Nhân Viên</a>
+    			<a href="#">Khách hàng</a>
+    			<a href="#">Phân Quyền</a>
   			</div>
 			<a href="#"><img
-				src="<%=request.getContextPath()%>/assets/admin/image/dashboard.png"
-				alt="dashboard" /><span>Dashboard</span></a> 
+				src="<%=request.getContextPath()%>/assets/admin/image/route.png"
+				alt="route" /><span>Quản Lý Tuyến Xe</span></a> 
 			<a href="#"><img
-				src="<%=request.getContextPath()%>/assets/admin/image/dashboard.png"
-				alt="dashboard" /><span>Dashboard</span></a> 
+				src="<%=request.getContextPath()%>/assets/admin/image/map.png"
+				alt="map" /><span>Quản Lý Chuyến Xe</span></a> 
 			<a href="#"><img
-				src="<%=request.getContextPath()%>/assets/admin/image/dashboard.png"
-				alt="dashboard" /><span>Dashboard</span></a> 
+				src="<%=request.getContextPath()%>/assets/admin/image/bus-bus.png"
+				alt="bus" /><span>Quản Lý Xe</span></a> 
 			<a href="#"><img
-				src="<%=request.getContextPath()%>/assets/admin/image/dashboard.png"
-				alt="dashboard" /><span>Dashboard</span></a> 
+				src="<%=request.getContextPath()%>/assets/admin/image/bill.png"
+				alt="bill" /><span>Quản Lý Hoá Đơn</span></a> 
 			<a href="#"><img
-				src="<%=request.getContextPath()%>/assets/admin/image/dashboard.png"
-				alt="dashboard" /><span>Dashboard</span></a>
+				src="<%=request.getContextPath()%>/assets/admin/image/chart.png"
+				alt="chart" /><span>Thống Kê</span></a>
 		</nav>
 	</aside>
 
@@ -86,29 +84,43 @@
 			</div>
 		</header>
 
-		<!-- Nội dung chính -->
 		<main class="content">
-			<!-- Cards (thống kê) -->
 			<div class="cards">
 				<div class="card">
-					<div class="card__title">Customers</div>
-					<div class="card__value">3,782</div>
-					<div class="card__change positive">+1.10%</div>
+					<div class="card__text">
+            			<div class="card__title">Khách hàng</div>
+            			<div class="card__value">3,782</div>
+        			</div>
+					<img
+				src="<%=request.getContextPath()%>/assets/admin/image/customer.png"
+				alt="customer" />
 				</div>
 				<div class="card">
-					<div class="card__title">Orders</div>
-					<div class="card__value">5,359</div>
-					<div class="card__change negative">-9.05%</div>
+					<div class="card__text">
+						<div class="card__title">Tổng số xe</div>
+						<div class="card__value">59</div>
+					</div>
+					<img
+				src="<%=request.getContextPath()%>/assets/admin/image/bus.png"
+				alt="bus" />
 				</div>
 				<div class="card">
-					<div class="card__title">Revenue</div>
-					<div class="card__value">$45,387</div>
-					<div class="card__change positive">+5.00%</div>
+					<div class="card__text">
+						<div class="card__title">Số chuyến xe</div>
+						<div class="card__value">187</div>
+					</div>
+					<img
+				src="<%=request.getContextPath()%>/assets/admin/image/bus-route.png"
+				alt="bus-route" />
 				</div>
 				<div class="card">
-					<div class="card__title">Visitors</div>
-					<div class="card__value">10,259</div>
-					<div class="card__change positive">+2.45%</div>
+					<div class="card__text">
+						<div class="card__title">Tổng doanh thu tháng</div>
+						<div class="card__value">102.000.259</div>
+					</div>
+					<img
+				src="<%=request.getContextPath()%>/assets/admin/image/money.png"
+				alt="money" />
 				</div>
 			</div>
 
