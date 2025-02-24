@@ -62,25 +62,32 @@
 						src="<%=request.getContextPath()%>/assets/admin/image/menu.png"
 						alt="menu" />
 				</button>
-				<div class="search-box">
-					<input type="text" placeholder="Search or type command..." />
-					<div class="search-box__icon"><img
-				src="<%=request.getContextPath()%>/assets/admin/image/magnifying-glass.png"
-				alt="search" /></div>
-				</div>
 			</div>
 
 			<div class="header__right">
-				<!-- Nút thông báo -->
-				<button class="header__notify">
-					&#128276;
-					<!-- Icon chuông dạng text -->
-				</button>
-				<!-- Thông tin user -->
-				<div class="header__user">
-					<img src="https://via.placeholder.com/40" alt="User" /> <span>Emirhan
-						Boruch</span>
+				<div class="header__user" onclick="toggleModal()">
+					<img
+						src="<%=request.getContextPath()%>/assets/admin/image/users.png"
+						alt="User" /> 
+					<span>Xin chào <strong>Emirhan Boruch</strong></span>
+					<img
+				src="<%=request.getContextPath()%>/assets/admin/image/down-arrow.png"
+				alt="down" />
 				</div>
+				
+				<div class="user-modal" id="userModal">
+        			<div class="user-modal__content">
+            			<p><strong>Emirhan Boruch</strong></p>
+            			<p>emirhanboruch51@gmail.com</p>
+            			<div class="user-modal__item"><img
+							src="<%=request.getContextPath()%>/assets/admin/image/profile.png"
+							alt="profile" /> Chỉnh sửa hồ sơ</div>
+            			<hr>
+            			<div class="user-modal__item logout"><img
+							src="<%=request.getContextPath()%>/assets/admin/image/log-out.png"
+							alt="log-out" class="log-out"/> Đăng xuất</div>
+        			</div>
+    			</div>
 			</div>
 		</header>
 
@@ -124,15 +131,19 @@
 				</div>
 			</div>
 
-			<!-- Bảng Recent Orders -->
 			<div class="orders">
 				<div class="orders__header">
-					<h2>Recent Orders</h2>
+					<h2>Danh sách người dùng</h2>
 					<div class="orders__actions">
-						<button class="btn">Filter</button>
-						<button class="btn btn--secondary">See all</button>
+						<div class="search-box">
+							<input type="text" placeholder="Nhập từ khoá để tìm kiếm..." />
+							<div class="search-box__icon"><img
+								src="<%=request.getContextPath()%>/assets/admin/image/magnifying-glass.png"
+								alt="search" /></div>
+						</div>
 					</div>
 				</div>
+				
 				<table>
 					<thead>
 						<tr>
@@ -140,6 +151,7 @@
 							<th>Category</th>
 							<th>Price</th>
 							<th>Status</th>
+							<th>Hành động</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -148,21 +160,99 @@
 							<td>Laptop</td>
 							<td>$2399.00</td>
 							<td class="status delivered">Delivered</td>
+							<td>
+								<img
+								src="<%=request.getContextPath()%>/assets/admin/image/see.png"
+								alt="detail" />
+								<img
+								src="<%=request.getContextPath()%>/assets/admin/image/update.png"
+								alt="search" />
+								<img
+								src="<%=request.getContextPath()%>/assets/admin/image/delete.png"
+								alt="search" />
+							</td>
 						</tr>
 						<tr>
 							<td>Apple Watch Ultra</td>
 							<td>Watch</td>
 							<td>$799.00</td>
 							<td class="status delivered">Delivered</td>
+							<td>
+								<img
+								src="<%=request.getContextPath()%>/assets/admin/image/see.png"
+								alt="detail" />
+								<img
+								src="<%=request.getContextPath()%>/assets/admin/image/update.png"
+								alt="search" />
+								<img
+								src="<%=request.getContextPath()%>/assets/admin/image/delete.png"
+								alt="search" />
+							</td>
 						</tr>
 						<tr>
 							<td>iPhone 13 Pro Max</td>
 							<td>SmartPhone</td>
 							<td>$1899.00</td>
 							<td class="status pending">Pending</td>
+							<td>
+								<img
+								src="<%=request.getContextPath()%>/assets/admin/image/see.png"
+								alt="detail" />
+								<img
+								src="<%=request.getContextPath()%>/assets/admin/image/update.png"
+								alt="search" />
+								<img
+								src="<%=request.getContextPath()%>/assets/admin/image/delete.png"
+								alt="search" />
+							</td>
 						</tr>
+						<tr>
+							<td>iPhone 13 Pro Max</td>
+							<td>SmartPhone</td>
+							<td>$1899.00</td>
+							<td class="status pending">Pending</td>
+							<td>
+								<img
+								src="<%=request.getContextPath()%>/assets/admin/image/see.png"
+								alt="detail" />
+								<img
+								src="<%=request.getContextPath()%>/assets/admin/image/update.png"
+								alt="search" />
+								<img
+								src="<%=request.getContextPath()%>/assets/admin/image/delete.png"
+								alt="search" />
+							</td>
+						</tr>
+						<tr>
+							<td>iPhone 13 Pro Max</td>
+							<td>SmartPhone</td>
+							<td>$1899.00</td>
+							<td class="status pending">Pending</td>
+							<td>
+								<img
+								src="<%=request.getContextPath()%>/assets/admin/image/see.png"
+								alt="detail" />
+								<img
+								src="<%=request.getContextPath()%>/assets/admin/image/update.png"
+								alt="search" />
+								<img
+								src="<%=request.getContextPath()%>/assets/admin/image/delete.png"
+								alt="search" />
+							</td>
+						</tr>
+						<tr>
 					</tbody>
 				</table>
+				
+				<div class="pagination-container">
+    				<p class="pagination-info">Showing 1 - 5 of 10 Products</p>
+    				<div class="pagination">
+        				<span class="prev disabled">Prev</span>
+        				<span class="page active">1</span>
+        				<span class="page">2</span>
+        				<span class="next">Next</span>
+    				</div>
+				</div>
 			</div>
 		</main>
 	</div>
@@ -199,6 +289,20 @@
 		    	    dashboardParent.classList.toggle('open');
 		    	  }
 		    });
+		});
+		
+		function toggleModal() {
+		    var modal = document.getElementById("userModal");
+		    modal.classList.toggle("show");
+		}
+		
+		document.addEventListener("click", function(event) {
+		    var modal = document.getElementById("userModal");
+		    var userHeader = document.querySelector(".header__user");
+		    
+		    if (!userHeader.contains(event.target) && !modal.contains(event.target)) {
+		        modal.classList.remove("show");
+		    }
 		});
 	</script>
 

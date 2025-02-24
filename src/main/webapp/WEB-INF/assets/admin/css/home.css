@@ -122,11 +122,15 @@ img.active, img.arrow.active {
 }
 
 .search-box input {
-  padding: 0.7rem 7rem 0.5rem 2.7rem;
+  padding: 0.7rem 2rem 0.5rem 2.7rem;
   border: 1px solid #ccc;
   border-radius: 7px;
   outline: none;
-  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  width: 300px;
+  width: 100%;
+  max-width: 400px;
+  min-width: 50px;
+  /*box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);*/
 }
 
 .search-box__icon {
@@ -141,6 +145,7 @@ img.active, img.arrow.active {
 .header__right {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .header__notify {
@@ -157,10 +162,14 @@ img.active, img.arrow.active {
 }
 
 .header__user img {
-  width: 32px;
-  height: 32px;
   border-radius: 50%;
   margin-right: 0.5rem;
+  margin-left: 5px;
+}
+
+.header__user img:nth-of-type(1) {
+  width: 32px;
+  height: 32px;
 }
 
 .content {
@@ -214,7 +223,7 @@ img.active, img.arrow.active {
   background: #fff;
   border-radius: 6px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-  padding: 1rem;
+  padding: 20px;
 }
 
 .orders__header {
@@ -227,6 +236,7 @@ img.active, img.arrow.active {
 .orders__header h2 {
   font-size: 1.1rem;
   font-weight: bold;
+  color: #595959;
 }
 
 .orders__actions .btn {
@@ -340,4 +350,136 @@ tr:not(:last-child) {
     height: auto;
     opacity: 0.5;
 }
+
+strong {
+    color: #595959;
+}
+
+.user-modal {
+    position: absolute;
+    top: 50px; 
+    right: 0;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+    display: none;
+    z-index: 100;
+    margin-right: 17px;
+    min-width: 270px;
+}
+
+.user-modal.show {
+    display: block;
+}
+
+.user-modal__content {
+    padding: 10px 10px 0px 15px;
+    text-align: left;
+}
+
+.user-modal__item {
+	display: flex;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+    align-items: center;
+}
+
+.user-modal__item img {
+	margin-right: 13px;
+}
+
+.user-modal__item .logout img {
+	margin-right: 10px;
+	filter: brightness(0) saturate(100%) invert(19%) sepia(99%) saturate(7482%) hue-rotate(358deg) brightness(97%) contrast(105%);
+}
+
+.user-modal__item:hover {
+    background: #f1f1f1;
+}
+
+.logout {
+    color: #ff0000b3;
+    font-weight: bold;
+}
+
+.user-modal .user-modal__content p {
+	color: #667085;
+    font-size: 15px;
+    margin-top: 5px;
+    margin-bottom: 7px;
+}
+
+.user-modal .user-modal__content p strong {
+    font-size: 15px;
+}
+
+hr {
+    margin-bottom: 7px;
+    margin-top: 7px;
+}
+
+img.log-out {
+    filter: brightness(0) saturate(100%) invert(19%) sepia(99%) saturate(7482%) hue-rotate(358deg) brightness(97%) contrast(105%);
+}
+
+table tbody tr:hover {
+    background-color: #e6e6e6a6; 
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 0px 10px;
+    font-family: Arial, sans-serif;
+    color: #666;
+}
+
+.pagination-info {
+    font-size: 14px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pagination .prev,
+.pagination .next,
+.pagination .page {
+    cursor: pointer;
+    font-size: 14px;
+    color: #f58220;
+    transition: 0.3s;
+}
+
+.pagination .prev.disabled {
+    color: #ccc;
+    cursor: default;
+}
+
+.pagination .page {
+    padding: 5px 10px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+}
+
+.pagination .page.active {
+    background-color: #f58220;
+    color: white;
+    font-weight: bold;
+}
+
+td img {
+    padding: 0px 3px;
+    cursor: pointer;
+}
+
+th:last-child, td:last-child {
+    text-align: center;
+}
+
 
