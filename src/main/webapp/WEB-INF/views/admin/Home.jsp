@@ -32,8 +32,8 @@
 				src="<%=request.getContextPath()%>/assets/admin/image/down-arrow.png"
 				alt="down" class="arrow active" /></a>
 			<div class="submenu" id="dashboardSubmenu">
-				<a href="#">Khách hàng</a> <a href="#">Nhân Viên</a> <a href="#">Phân
-					Quyền</a>
+				<a id="customer-link" href="/FutaBusBooking/admin?loaiNguoiDung=1">Khách hàng</a> 
+				<a id="staff-link" href="/FutaBusBooking/admin?loaiNguoiDung=2">Quản trị viên</a>
 			</div>
 			<a href="#"><img
 				src="<%=request.getContextPath()%>/assets/admin/image/route.png"
@@ -132,7 +132,7 @@
 
 			<div class="orders">
 				<div class="orders__header">
-					<h2>Danh sách người dùng</h2>
+					<h2 id="title">Danh sách khách hàng</h2>
 					<div class="orders__actions">
 						<div class="search-box">
 							<input type="text" placeholder="Nhập từ khoá để tìm kiếm..." />
@@ -221,6 +221,22 @@
 		    const dashboardParent = document.getElementById('dashboardParent');
 		    const dashboardSubmenu = document.getElementById('dashboardSubmenu');
 		    
+		    let titleElement = document.getElementById("title");
+		      let customerLink = document.getElementById("customer-link"); 
+		      let staffLink = document.getElementById("staff-link"); 
+		      
+		      let loaiNguoiDung = getParameterByName("loaiNguoiDung");
+
+		      if (loaiNguoiDung === "2") {
+		          titleElement.textContent = "Danh sách quản trị viên";
+		          staffLink.style.backgroundColor = "#ecf3ff";
+		          customerLink.style.backgroundColor = ""; 
+		      } else {
+		          titleElement.textContent = "Danh sách khách hàng";
+		          customerLink.style.backgroundColor = "#ecf3ff";
+		          staffLink.style.backgroundColor = "";
+		      }
+		    
 		    if (localStorage.getItem('sidebarCollapsed') === 'true') {
 		        sidebar.classList.add('collapsed');
 		        logoImg.setAttribute('src', '<%=request.getContextPath()%>/assets/admin/image/image-logo.png');
@@ -260,6 +276,11 @@
 		function toggleModal() {
 			var modal = document.getElementById("userModal");
 			modal.classList.toggle("show");
+		}
+		
+		function getParameterByName(name) {
+		      let urlParams = new URLSearchParams(window.location.search);
+		      return urlParams.get(name);
 		}
 
 		document.addEventListener("click", function(event) {

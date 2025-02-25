@@ -15,25 +15,25 @@ public class NguoiDungDao {
     
     private static SessionFactory factory = HibernateUtils.getSessionFactory();
     
-    // Lấy dữ liệu phân trang
-    public List<NguoiDung> getNguoiDungByPage(int offset, int limit) {
+    public List<NguoiDung> getNguoiDungByPage(int offset, int limit, int idPhanQuyen) {
         List<NguoiDung> nguoiDungList = new ArrayList<>();
         Session session = null;
         Transaction transaction = null;
-        
+
         try {
             if (factory == null) {
                 factory = HibernateUtils.getSessionFactory();
             }
             session = factory.openSession();
             transaction = session.beginTransaction();
-            
-            String hql = "from NguoiDung";
+
+            String hql = "from NguoiDung where idPhanQuyen = :idPhanQuyen";
             Query<NguoiDung> query = session.createQuery(hql, NguoiDung.class);
-            query.setFirstResult(offset); // offset: vị trí bắt đầu
-            query.setMaxResults(limit); // limit: số lượng bản ghi mỗi trang
+            query.setParameter("idPhanQuyen", idPhanQuyen);
+            query.setFirstResult(offset);
+            query.setMaxResults(limit);
+
             nguoiDungList = query.getResultList();
-            
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -48,23 +48,23 @@ public class NguoiDungDao {
         return nguoiDungList;
     }
     
-    // Lấy tổng số người dùng
-    public long getTotalNguoiDung() {
+    public long getTotalNguoiDung(int idPhanQuyen) {
         long total = 0;
         Session session = null;
         Transaction transaction = null;
-        
+
         try {
             if (factory == null) {
                 factory = HibernateUtils.getSessionFactory();
             }
             session = factory.openSession();
             transaction = session.beginTransaction();
-            
-            String hql = "select count(*) from NguoiDung";
+
+            String hql = "select count(*) from NguoiDung where idPhanQuyen = :idPhanQuyen";
             Query<Long> query = session.createQuery(hql, Long.class);
+            query.setParameter("idPhanQuyen", idPhanQuyen);
             total = query.uniqueResult();
-            
+
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -82,6 +82,11 @@ public class NguoiDungDao {
 
 
 
+
+
+
+
+
 //package Dao;
 //
 //import org.springframework.stereotype.Repository;
@@ -96,37 +101,68 @@ public class NguoiDungDao {
 //
 //@Repository
 //public class NguoiDungDao {
-//	
-//	private static SessionFactory factory = HibernateUtils.getSessionFactory();
-//	
-//	public List<NguoiDung> getAllNguoiDung() {
-//	    List<NguoiDung> nguoiDungList = new ArrayList<>();
-//	    Session session = null;
-//	    Transaction transaction = null;
-//	    
-//	    try {
-//	        if (factory == null) {
-//	            factory = HibernateUtils.getSessionFactory();
-//	        }
-//	        session = factory.openSession();
-//	        transaction = session.beginTransaction();
-//
-//	        String hql = "from NguoiDung";
-//	        Query<NguoiDung> query = session.createQuery(hql, NguoiDung.class);
-//	        nguoiDungList = query.getResultList();
-//	        
-//	        transaction.commit();
-//	    } catch (Exception e) {
-//	        if (transaction != null) {
-//	            transaction.rollback();
-//	        }
-//	        e.printStackTrace();
-//	    } finally {
-//	        if (session != null) {
-//	            session.close();
-//	        }
-//	    }
-//	    return nguoiDungList;
-//	}
-//
+//    
+//    private static SessionFactory factory = HibernateUtils.getSessionFactory();
+//    
+//    public List<NguoiDung> getNguoiDungByPage(int offset, int limit) {
+//        List<NguoiDung> nguoiDungList = new ArrayList<>();
+//        Session session = null;
+//        Transaction transaction = null;
+//        
+//        try {
+//            if (factory == null) {
+//                factory = HibernateUtils.getSessionFactory();
+//            }
+//            session = factory.openSession();
+//            transaction = session.beginTransaction();
+//            
+//            String hql = "from NguoiDung";
+//            Query<NguoiDung> query = session.createQuery(hql, NguoiDung.class);
+//            query.setFirstResult(offset); 
+//            query.setMaxResults(limit);
+//            nguoiDungList = query.getResultList();
+//            
+//            transaction.commit();
+//        } catch (Exception e) {
+//            if (transaction != null) {
+//                transaction.rollback();
+//            }
+//            e.printStackTrace();
+//        } finally {
+//            if (session != null) {
+//                session.close();
+//            }
+//        }
+//        return nguoiDungList;
+//    }
+//    
+//    public long getTotalNguoiDung() {
+//        long total = 0;
+//        Session session = null;
+//        Transaction transaction = null;
+//        
+//        try {
+//            if (factory == null) {
+//                factory = HibernateUtils.getSessionFactory();
+//            }
+//            session = factory.openSession();
+//            transaction = session.beginTransaction();
+//            
+//            String hql = "select count(*) from NguoiDung";
+//            Query<Long> query = session.createQuery(hql, Long.class);
+//            total = query.uniqueResult();
+//            
+//            transaction.commit();
+//        } catch (Exception e) {
+//            if (transaction != null) {
+//                transaction.rollback();
+//            }
+//            e.printStackTrace();
+//        } finally {
+//            if (session != null) {
+//                session.close();
+//            }
+//        }
+//        return total;
+//    }
 //}
