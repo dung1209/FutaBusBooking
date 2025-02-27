@@ -220,12 +220,13 @@
 		    const logoImg = logoDiv.querySelector('img');
 		    const dashboardParent = document.getElementById('dashboardParent');
 		    const dashboardSubmenu = document.getElementById('dashboardSubmenu');
+
+		    let loaiNguoiDung = getParameterByName("loaiNguoiDung") || 1;
 		    
 		    let titleElement = document.getElementById("title");
 		      let customerLink = document.getElementById("customer-link"); 
 		      let staffLink = document.getElementById("staff-link"); 
 		      
-		      let loaiNguoiDung = getParameterByName("loaiNguoiDung");
 
 		      if (loaiNguoiDung === "2") {
 		          titleElement.textContent = "Danh sách quản trị viên";
