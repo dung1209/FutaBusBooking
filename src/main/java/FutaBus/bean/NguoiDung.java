@@ -41,7 +41,7 @@ public class NguoiDung {
     private Date ngayDangKy;
 
     @Column(name = "trangThai", nullable = false)
-    private boolean trangThai;
+    private int trangThai;
 
     @Column(name = "idPhanQuyen", nullable = false)
     private int idPhanQuyen;
@@ -50,7 +50,7 @@ public class NguoiDung {
     }
 
     public NguoiDung(int idNguoiDung, String hoTen, boolean gioiTinh, int namSinh, String CCCD, String diaChi,
-                     String soDienThoai, String email, String matKhau, Date ngayDangKy, boolean trangThai, int idPhanQuyen) {
+                     String soDienThoai, String email, String matKhau, Date ngayDangKy, int trangThai, int idPhanQuyen) {
         this.idNguoiDung = idNguoiDung;
         this.hoTen = hoTen;
         this.gioiTinh = gioiTinh;
@@ -145,11 +145,11 @@ public class NguoiDung {
         this.ngayDangKy = ngayDangKy;
     }
 
-    public boolean isTrangThai() {
+    public int isTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(boolean trangThai) {
+    public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
 

@@ -5,10 +5,10 @@
 <head>
 
 <meta charset="utf-8">
-<title>Trang chủ Admin</title>
+<title>Chuyến xe</title>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/assets/admin/css/home.css">
+	href="<%=request.getContextPath()%>/assets/admin/css/busroute.css">
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
 	rel="stylesheet">
@@ -16,6 +16,7 @@
 	href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link rel="stylesheet" type="text/css"
 	href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 </head>
 <body>
@@ -26,11 +27,11 @@
 		</div>
 
 		<nav class="sidebar__nav">
-			<a href="<%=request.getContextPath()%>/admin?loaiNguoiDung=1" class="active menu-parent" id="dashboardParent"><img
+			<a href="http://localhost:8085/FutaBusBooking/admin" class="menu-parent" id="dashboardParent"><img
 				src="<%=request.getContextPath()%>/assets/admin/image/user.png"
-				alt="user" class="active" /><span>Người Dùng</span><img
+				alt="user"/><span>Người Dùng</span><img
 				src="<%=request.getContextPath()%>/assets/admin/image/down-arrow.png"
-				alt="down" class="arrow active" /></a>
+				alt="down" class="arrow" /></a>
 			<div class="submenu" id="dashboardSubmenu">
 				<a id="customer-link" href="/FutaBusBooking/admin?loaiNguoiDung=1">Khách hàng</a> 
 				<a id="staff-link" href="/FutaBusBooking/admin?loaiNguoiDung=2">Quản trị viên</a>
@@ -38,9 +39,9 @@
 			<a href="<%=request.getContextPath()%>/admin/bus-route"><img
 				src="<%=request.getContextPath()%>/assets/admin/image/route.png"
 				alt="route" /><span>Quản Lý Tuyến Xe</span></a> 
-			<a href="<%=request.getContextPath()%>/admin/bus-trip"><img
+			<a href="<%=request.getContextPath()%>/admin/bus-trip" class="active"><img
 				src="<%=request.getContextPath()%>/assets/admin/image/map.png"
-				alt="map" /><span>Quản Lý Chuyến Xe</span></a> 
+				alt="map" class="active" /><span>Quản Lý Chuyến Xe</span></a> 
 			<a href="<%=request.getContextPath()%>/admin/bus"><img
 				src="<%=request.getContextPath()%>/assets/admin/image/bus-bus.png"
 				alt="bus" /><span>Quản Lý Xe</span></a> 
@@ -139,7 +140,7 @@
 
 			<div class="orders">
 				<div class="orders__header">
-					<h2 id="title">Danh sách khách hàng</h2>
+					<h2 id="title">Danh sách chuyến xe</h2>
 					<div class="orders__actions">
 						<div class="search-box">
 							<input type="text" placeholder="Nhập từ khoá để tìm kiếm..." />
@@ -155,24 +156,42 @@
 				<table>
 					<thead>
 						<tr>
-							<th>Họ tên</th>
-							<th>Tuổi</th>
-							<th>Giới tính</th>
-							<th>Địa chỉ</th>
-							<th>Số điện thoại</th>
-							<th>Email</th>
+							<th>Tuyến xe</th>
+							<th>Thời điểm đi</th>
+							<th>Thời điểm đến</th>
+							<th>Xe</th>
+							<th>Giá vé</th>
+							<th>Tài xế</th>
 							<th>Hành động</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="nguoiDung" items="${nguoiDungList}">
+						<c:forEach var="chuyenxe" items="${chuyenXeList}">
 							<tr>
-								<td>${nguoiDung.hoTen}</td>
-								<td>${nguoiDung.namSinh}</td>
-								<td>${nguoiDung.gioiTinh ? 'Nữ' : 'Nam'}</td>
-								<td>${nguoiDung.diaChi}</td>
-								<td>${nguoiDung.soDienThoai}</td>
-								<td>${nguoiDung.email}</td>
+								<td>
+									<c:forEach var="tuyenxe" items="${tuyenXeList}">
+        								<c:if test="${chuyenxe.idTuyenXe == tuyenxe.idTuyenXe}">
+            								${tuyenxe.tenTuyen}
+        								</c:if>
+    								</c:forEach>
+								</td>
+								<td>${chuyenxe.thoiDiemDi}</td>
+								<td>${chuyenxe.thoiDiemDen}</td>
+								<td>
+									<c:forEach var="xe" items="${xeList}">
+        								<c:if test="${xe.idXe == chuyenxe.idXe}">
+            								${xe.bienSo}
+        								</c:if>
+    								</c:forEach>
+								</td>
+								<td><fmt:formatNumber value="${chuyenxe.giaVe}" pattern="#,###" groupingUsed="true" /> VNĐ</td>
+								<td>
+									<c:forEach var="nguoidung" items="${nguoiDungList}">
+        								<c:if test="${nguoidung.idNguoiDung == chuyenxe.idTaiXe}">
+            								${nguoidung.hoTen}
+        								</c:if>
+    								</c:forEach>
+								</td>
 								<td><img
 									src="<%=request.getContextPath()%>/assets/admin/image/see.png"
 									alt="detail" /> <img
@@ -220,86 +239,75 @@
 	</div>
 
 	<script>
-		document.addEventListener('DOMContentLoaded', function() {
-			const toggleBtn = document.getElementById('toggleBtn');
-			const sidebar = document.getElementById('sidebar');
-			const logoDiv = document.getElementById('sidebarLogo');
-		    const logoImg = logoDiv.querySelector('img');
-		    const dashboardParent = document.getElementById('dashboardParent');
-		    const dashboardSubmenu = document.getElementById('dashboardSubmenu');
+	document.addEventListener('DOMContentLoaded', function() {
+		const toggleBtn = document.getElementById('toggleBtn');
+		const sidebar = document.getElementById('sidebar');
+		const logoDiv = document.getElementById('sidebarLogo');
+	    const logoImg = logoDiv.querySelector('img');
+	    const dashboardParent = document.getElementById('dashboardParent');
+	    const dashboardSubmenu = document.getElementById('dashboardSubmenu');
 
-		    let loaiNguoiDung = getParameterByName("loaiNguoiDung") || 1;
-		    
-		    let titleElement = document.getElementById("title");
-		      let customerLink = document.getElementById("customer-link"); 
-		      let staffLink = document.getElementById("staff-link"); 
-		      
+	    
+	    let titleElement = document.getElementById("title");
+	      let customerLink = document.getElementById("customer-link"); 
+	      let staffLink = document.getElementById("staff-link"); 
+	      
+	    
+	    if (localStorage.getItem('sidebarCollapsed') === 'true') {
+	        sidebar.classList.add('collapsed');
+	        logoImg.setAttribute('src', '<%=request.getContextPath()%>/assets/admin/image/image-logo.png');
+	    }
 
-		      if (loaiNguoiDung === "2") {
-		          titleElement.textContent = "Danh sách quản trị viên";
-		          staffLink.style.backgroundColor = "#ecf3ff";
-		          customerLink.style.backgroundColor = ""; 
-		      } else {
-		          titleElement.textContent = "Danh sách khách hàng";
-		          customerLink.style.backgroundColor = "#ecf3ff";
-		          staffLink.style.backgroundColor = "";
-		      }
-		    
-		    if (localStorage.getItem('sidebarCollapsed') === 'true') {
-		        sidebar.classList.add('collapsed');
-		        logoImg.setAttribute('src', '<%=request.getContextPath()%>/assets/admin/image/image-logo.png');
-		    }
+	    toggleBtn.addEventListener('click', function() {
+	        sidebar.classList.toggle('collapsed');
+	        
+	        if (sidebar.classList.contains('collapsed')) {
+	          logoImg.setAttribute('src', '<%=request.getContextPath()%>/assets/admin/image/image-logo.png');
+	          localStorage.setItem('sidebarCollapsed', 'true');
+	        } else {
+	          logoImg.setAttribute('src', '<%=request.getContextPath()%>/assets/admin/image/logo.png');
+	          localStorage.setItem('sidebarCollapsed', 'false');
+											}
 
-		    toggleBtn.addEventListener('click', function() {
-		        sidebar.classList.toggle('collapsed');
-		        
-		        if (sidebar.classList.contains('collapsed')) {
-		          logoImg.setAttribute('src', '<%=request.getContextPath()%>/assets/admin/image/image-logo.png');
-		          localStorage.setItem('sidebarCollapsed', 'true');
-		        } else {
-		          logoImg.setAttribute('src', '<%=request.getContextPath()%>/assets/admin/image/logo.png');
-		          localStorage.setItem('sidebarCollapsed', 'false');
-												}
+											if (dashboardSubmenu.classList
+													.contains('open')) {
+												dashboardSubmenu.classList
+														.remove('open');
+												dashboardParent.classList
+														.remove('open');
+											}
+										});
 
-												if (dashboardSubmenu.classList
-														.contains('open')) {
-													dashboardSubmenu.classList
-															.remove('open');
-													dashboardParent.classList
-															.remove('open');
-												}
-											});
+						dashboardParent.addEventListener('click', function(
+								e) {
+							e.preventDefault();
 
-							dashboardParent.addEventListener('click', function(
-									e) {
-								e.preventDefault();
-
-								if (!sidebar.classList.contains('collapsed')) {
-									dashboardSubmenu.classList.toggle('open');
-									dashboardParent.classList.toggle('open');
-								}
-							});
+							if (!sidebar.classList.contains('collapsed')) {
+								dashboardSubmenu.classList.toggle('open');
+								dashboardParent.classList.toggle('open');
+							}
 						});
+					});
 
-		function toggleModal() {
-			var modal = document.getElementById("userModal");
-			modal.classList.toggle("show");
+	function toggleModal() {
+		var modal = document.getElementById("userModal");
+		modal.classList.toggle("show");
+	}
+	
+	function getParameterByName(name) {
+	      let urlParams = new URLSearchParams(window.location.search);
+	      return urlParams.get(name);
+	}
+
+	document.addEventListener("click", function(event) {
+		var modal = document.getElementById("userModal");
+		var userHeader = document.querySelector(".header__user");
+
+		if (!userHeader.contains(event.target)
+				&& !modal.contains(event.target)) {
+			modal.classList.remove("show");
 		}
-		
-		function getParameterByName(name) {
-		      let urlParams = new URLSearchParams(window.location.search);
-		      return urlParams.get(name);
-		}
-
-		document.addEventListener("click", function(event) {
-			var modal = document.getElementById("userModal");
-			var userHeader = document.querySelector(".header__user");
-
-			if (!userHeader.contains(event.target)
-					&& !modal.contains(event.target)) {
-				modal.classList.remove("show");
-			}
-		});
+	});
 	</script>
 
 </body>

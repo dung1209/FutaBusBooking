@@ -11,7 +11,19 @@ public class HibernateUtils {
     static {
         try {
             Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
+            configuration.addAnnotatedClass(FutaBus.bean.BenXe.class);
+            configuration.addAnnotatedClass(FutaBus.bean.ChuyenXe.class);
+            configuration.addAnnotatedClass(FutaBus.bean.LoaiXe.class);
+            configuration.addAnnotatedClass(FutaBus.bean.LoTrinh.class);
             configuration.addAnnotatedClass(FutaBus.bean.NguoiDung.class);
+            configuration.addAnnotatedClass(FutaBus.bean.PhanQuyen.class);
+            configuration.addAnnotatedClass(FutaBus.bean.PhieuDatVe.class);
+            configuration.addAnnotatedClass(FutaBus.bean.QuanHuyen.class);
+            configuration.addAnnotatedClass(FutaBus.bean.TinhThanh.class);
+            configuration.addAnnotatedClass(FutaBus.bean.TuyenXe.class);
+            configuration.addAnnotatedClass(FutaBus.bean.VeXe.class);
+            configuration.addAnnotatedClass(FutaBus.bean.ViTriGhe.class);
+            configuration.addAnnotatedClass(FutaBus.bean.Xe.class);
             StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
             builder.applySettings(configuration.getProperties());
             StandardServiceRegistry serviceRegistry = builder.build();
